@@ -21,9 +21,14 @@ Use this for reproducible AI agent security benchmarking in CI and local dev.
 ## Install
 
 ```bash
-pip install agent-audit
-# or
-uvx agent-audit scan .
+# from this repo
+pip install .
+
+# or from a built wheel
+pip install dist/graniteai_agent_audit-*.whl
+
+# or run directly from GitHub (no local install)
+uvx --from git+https://github.com/ClariSortAi/agent-audit.git@v0.16.3 agent-audit scan .
 ```
 
 ## Quick start

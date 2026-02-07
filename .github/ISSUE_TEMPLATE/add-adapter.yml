@@ -1,0 +1,12 @@
+name: Add adapter
+description: Request support for a new agent adapter
+title: "adapter: add support for <agent>"
+labels: ["adapter", "good first issue"]
+body:
+  - type: textarea
+    id: agent
+    attributes:
+      label: Agent details
+      description: Link to docs/config format and example config files.
+    validations:
+      required: true

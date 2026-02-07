@@ -1,0 +1,12 @@
+name: Bug report
+description: Report scanner behavior that looks incorrect
+title: "bug: <short summary>"
+labels: ["bug"]
+body:
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Include command, agent type, and sanitized config snippets.
+    validations:
+      required: true

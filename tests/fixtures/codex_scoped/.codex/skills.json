@@ -1,0 +1,8 @@
+{
+  "skills": [
+    {
+      "name": "unit-test-runner",
+      "permissions": ["filesystem.read"]
+    }
+  ]
+}

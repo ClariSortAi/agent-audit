@@ -1,0 +1,12 @@
+{
+  "skills": [
+    {
+      "name": "deploy-agent",
+      "permissions": ["shell", "network.*", "filesystem.write"]
+    },
+    {
+      "name": "formatter",
+      "permissions": ["filesystem.read"]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+version = "0.1.0"
+endpoints = ["https://api.openai.com/v1"]
+env = ["OPENAI_API_KEY"]
+
+[permissions]
+allowed_paths = [".", "./src"]
+blocked_paths = ["~/.ssh"]
+shell = "filtered"

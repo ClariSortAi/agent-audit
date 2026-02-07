@@ -20,8 +20,8 @@ require_cmd convert
 
 mkdir -p "$WORK_DIR" "$CONFIG_HOME" "$(dirname "$OUT_GIF")"
 rm -f "$WORK_DIR/demo.cast"
-rm -rf "$WORK_DIR/frames" "$WORK_DIR/png"
-mkdir -p "$WORK_DIR/frames" "$WORK_DIR/png"
+rm -rf "$WORK_DIR/frames" "$WORK_DIR/frames_light" "$WORK_DIR/png"
+mkdir -p "$WORK_DIR/frames" "$WORK_DIR/frames_light" "$WORK_DIR/png"
 
 DEMO_SCRIPT="$WORK_DIR/demo_script.sh"
 cat > "$DEMO_SCRIPT" <<'SCRIPT'
@@ -43,11 +43,17 @@ chmod +x "$DEMO_SCRIPT"
 XDG_CONFIG_HOME="$CONFIG_HOME" asciinema rec -q --overwrite --cols 120 --rows 36 \
   -c "ROOT_DIR=$ROOT_DIR bash $DEMO_SCRIPT" "$WORK_DIR/demo.cast"
 
-termtosvg render "$WORK_DIR/demo.cast" "$WORK_DIR/frames" -s -t window_frame >/dev/null
+termtosvg render "$WORK_DIR/demo.cast" "$WORK_DIR/frames" -s -t solarized_light >/dev/null
 
 for svg in "$WORK_DIR"/frames/*.svg; do
   base="$(basename "$svg" .svg)"
-  convert -background '#0b1220' "$svg" "$WORK_DIR/png/${base}.png"
+  perl -0pe '
+    s/(\.foreground\s*\{fill:\s*)#[0-9a-fA-F]{6}(;\s*\})/${1}#000000$2/g;
+    s/(\.background\s*\{fill:\s*)#[0-9a-fA-F]{6}(;\s*\})/${1}#ffffff$2/g;
+    s/(\.color0\s*\{fill:\s*)#[0-9a-fA-F]{6}(;\s*\})/${1}#ffffff$2/g;
+    s/(\.color([1-9]|1[0-5])\s*\{fill:\s*)#[0-9a-fA-F]{6}(;\s*\})/${1}#000000$3/g;
+  ' "$svg" > "$WORK_DIR/frames_light/${base}.svg"
+  convert -background '#ffffff' "$WORK_DIR/frames_light/${base}.svg" "$WORK_DIR/png/${base}.png"
 done
 
 ffmpeg -y -framerate 1.8 -i "$WORK_DIR/png/termtosvg_%05d.png" \

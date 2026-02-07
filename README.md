@@ -4,7 +4,7 @@ Know exactly what your AI agents can do to your machine before they do it.
 
 `agent-audit` is a security scanner for AI coding agents (OpenClaw, Claude Code, Codex, Nanobot, MCP tools). It audits filesystem scope, network egress, shell execution, secrets exposure, and plugin/skill risk.
 
-![agent-audit demo](artifacts/demo.gif)
+![agent-audit demo](artifacts/demo.gif?v=20260207)
 
 ## Security comparison snapshot
 

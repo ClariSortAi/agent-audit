@@ -35,7 +35,7 @@ sleep 2
 printf '\n$ agent-audit compare ~/.openclaw tests/fixtures/codex_scoped --format markdown\n\n'
 .venv/bin/agent-audit compare ~/.openclaw tests/fixtures/codex_scoped --format markdown
 sleep 2
-printf '\n$ agent-audit monitor --exec "openclaw --help" --duration 2 --format json\n\n'
+printf '\n$ agent-audit monitor --exec "openclaw --help" --duration 3 --format json\n\n'
 .venv/bin/agent-audit monitor --exec "openclaw --help" --duration 3 --format json
 sleep 2
 SCRIPT

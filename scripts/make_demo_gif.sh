@@ -51,7 +51,7 @@ for svg in "$WORK_DIR"/frames/*.svg; do
 done
 
 ffmpeg -y -framerate 1.8 -i "$WORK_DIR/png/termtosvg_%05d.png" \
-  -vf "scale=1200:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=bayer" \
+  -vf "scale=1200:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=256:stats_mode=full[p];[s1][p]paletteuse=dither=none" \
   "$OUT_GIF" >/dev/null 2>&1
 
 echo "generated: $OUT_GIF"
